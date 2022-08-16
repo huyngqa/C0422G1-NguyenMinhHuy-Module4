@@ -24,8 +24,13 @@ public class CondimentsController {
     }
 
     @PostMapping("/choose-condiments")
-    public String showChooseCondiments(@RequestParam String[] condiments, Model model) {
-        model.addAttribute("condiments", condiments);
+    public String showChooseCondiments(@RequestParam(required = false) List<String> condiments,
+                                       Model model) {
+        if (condiments == null) {
+            model.addAttribute("message", "choose nothing");
+        } else {
+            model.addAttribute("condiments", condiments);
+        }
         return "result";
     }
 }

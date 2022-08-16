@@ -12,6 +12,7 @@
                 <li>${condiment}</li>
         </c:forEach>
     </ol>
+    <span>${message}</span>
     <hr>
     <a href="/">Return Homepage</a>
 </body>
