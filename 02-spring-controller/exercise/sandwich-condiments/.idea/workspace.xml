@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7730b8c1-c09b-453f-aacb-2f9391b086cf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../practice/customer-management/src/main/java/com/practice/config/AppConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../practice/customer-management/src/main/java/com/practice/config/AppInitializer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../01-overview-spring-MVC/exercise/currency-converter-app/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../01-overview-spring-MVC/exercise/currency-converter-app/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../01-overview-spring-MVC/exercise/currency-converter-app/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../01-overview-spring-MVC/exercise/currency-converter-app/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../01-overview-spring-MVC/exercise/currency-converter-app/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../01-overview-spring-MVC/exercise/currency-converter-app/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -24,26 +26,7 @@
       <change beforePath="$PROJECT_DIR$/../../../01-overview-spring-MVC/exercise/dictionary-app/.idea/dictionary-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../01-overview-spring-MVC/exercise/dictionary-app/.idea/dictionary-app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../01-overview-spring-MVC/exercise/dictionary-app/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../01-overview-spring-MVC/exercise/dictionary-app/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../01-overview-spring-MVC/exercise/dictionary-app/build/libs/dictionary-app-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/../../../01-overview-spring-MVC/exercise/dictionary-app/build/libs/dictionary-app-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/exercise/controller/CondimentsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/exercise/controller/CondimentsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/exercise/repository/CondimentsRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/exercise/repository/CondimentsRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/exercise/repository/impl/CondimentsRepositoryImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/exercise/repository/impl/CondimentsRepositoryImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/exercise/service/CondimentsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/exercise/service/CondimentsService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/exercise/service/impl/CondimentsServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/exercise/service/impl/CondimentsServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libs/sandwich-condiments-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/sandwich-condiments-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/exercise/controller/CondimentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exercise/controller/CondimentsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/exercise/repository/CondimentsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exercise/repository/CondimentsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/exercise/repository/impl/CondimentsRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exercise/repository/impl/CondimentsRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/exercise/service/CondimentsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exercise/service/CondimentsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/exercise/service/impl/CondimentsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exercise/service/impl/CondimentsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/result.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/result.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../exam/config-exam/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../exam/config-exam/.idea/compiler.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../exam/config-exam/.idea/gradle.xml" beforeDir="false" />
@@ -99,8 +82,9 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/exercise" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../practice/customer-management" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -212,7 +196,7 @@
       <workItem from="1660621924005" duration="3469000" />
       <workItem from="1660631385746" duration="1942000" />
       <workItem from="1660634882859" duration="279000" />
-      <workItem from="1660635569591" duration="380000" />
+      <workItem from="1660635569591" duration="782000" />
     </task>
     <servers />
   </component>
