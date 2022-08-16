@@ -10,7 +10,7 @@ import java.util.Map;
 public class CalculatorServiceImpl implements CalculatorService {
 
     @Override
-    public Map<String, String> getCalculateResult(int number1, int number2, String operator) {
+    public Map<String, String> calculate(int number1, int number2, String operator) {
         Map<String, String> map = new HashMap<>();
         switch (operator) {
             case "+":
