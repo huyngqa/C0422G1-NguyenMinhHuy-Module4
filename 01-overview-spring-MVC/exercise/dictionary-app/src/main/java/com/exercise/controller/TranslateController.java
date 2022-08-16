@@ -1,6 +1,6 @@
 package com.exercise.controller;
 
-import com.exercise.service.TranslateService;
+import com.exercise.service.ITranslateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class TranslateController {
 
     @Autowired
-    private TranslateService translateService;
+    private ITranslateService iTranslateService;
 
     @GetMapping("/")
     public String showFormTranslate() {
@@ -20,7 +20,7 @@ public class TranslateController {
 
     @GetMapping("/trans")
     public String translateWords(@RequestParam String words, Model model) {
-        String result = translateService.translateWords(words);
+        String result = iTranslateService.translateWords(words);
         model.addAttribute("words",words);
         model.addAttribute("result", result);
         return "index";

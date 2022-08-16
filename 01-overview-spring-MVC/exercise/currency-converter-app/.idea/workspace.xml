@@ -5,7 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cca6cb8b-f7f3-4b27-8bb7-869cbd9c2255" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/currency-converter-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/currency-converter-app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/libs/currency-converter-app-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/currency-converter-app-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/exercise/controller/ConvertController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exercise/controller/ConvertController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/exercise/service/ConvertService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exercise/service/IConvertService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/exercise/service/impl/ConvertServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exercise/service/impl/ConvertService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary-app/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../dictionary-app/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary-app/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../dictionary-app/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary-app/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../dictionary-app/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary-app/.gradle/7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../dictionary-app/.gradle/7.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary-app/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../dictionary-app/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary-app/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../dictionary-app/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary-app/.idea/dictionary-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../dictionary-app/.idea/dictionary-app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary-app/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../dictionary-app/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary-app/build/libs/dictionary-app-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/../dictionary-app/build/libs/dictionary-app-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../02-spring-controller/exercise/sandwich-condiments/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../02-spring-controller/exercise/sandwich-condiments/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../exam/config-exam/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../exam/config-exam/.idea/compiler.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../exam/config-exam/.idea/gradle.xml" beforeDir="false" />
@@ -66,6 +88,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../dictionary-app" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -178,6 +201,8 @@
       <workItem from="1660526144513" duration="726000" />
       <workItem from="1660534005652" duration="2733000" />
       <workItem from="1660546776947" duration="1379000" />
+      <workItem from="1660551473622" duration="87000" />
+      <workItem from="1660640300219" duration="58000" />
     </task>
     <servers />
   </component>
