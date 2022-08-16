@@ -8,7 +8,7 @@
     <h1>Sandwich Condiments</h1>
     <h3>You have chosen condiments: </h3>
     <ol>
-        <c:forEach items="${condimentsList}" var="condiment" >
+        <c:forEach items="${condiments}" var="condiment" >
                 <li>${condiment}</li>
         </c:forEach>
     </ol>

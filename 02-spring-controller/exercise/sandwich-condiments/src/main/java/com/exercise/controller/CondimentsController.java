@@ -24,9 +24,8 @@ public class CondimentsController {
     }
 
     @PostMapping("/choose-condiments")
-    public String showChooseCondiments(@RequestParam String[] condiment, Model model) {
-        List<String> condimentsList = condimentsService.chooseCondiments(condiment);
-        model.addAttribute("condimentsList", condimentsList);
+    public String showChooseCondiments(@RequestParam String[] condiments, Model model) {
+        model.addAttribute("condiments", condiments);
         return "result";
     }
 }

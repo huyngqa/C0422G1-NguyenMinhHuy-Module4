@@ -8,7 +8,7 @@
     <h1>Sandwich Condiments</h1>
     <form action="/choose-condiments" method="post">
         <c:forEach var="condiment" items="${condimentsList}">
-            <input type="checkbox" name="condiment" value="${condiment}">${condiment}
+            <input type="checkbox" name="condiments" value="${condiment}">${condiment}
         </c:forEach>
         <hr>
         <button>Save</button>

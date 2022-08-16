@@ -17,9 +17,4 @@ public class CondimentsServiceImpl implements CondimentsService {
     public List<String> getAllCondiments() {
         return condimentsRepository.getAllCondiments();
     }
-
-    @Override
-    public List<String> chooseCondiments(String[] condiment) {
-        return condimentsRepository.chooseCondiments(condiment);
-    }
 }
