@@ -1,6 +1,6 @@
 package com.exercise.controller;
 
-import com.exercise.service.CondimentsService;
+import com.exercise.service.ICondimentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +14,11 @@ import java.util.List;
 public class CondimentsController {
 
     @Autowired
-    private CondimentsService condimentsService;
+    private ICondimentsService iCondimentsService;
 
     @GetMapping("")
     public String showListCondiments(Model model) {
-        List<String> condimentsList = condimentsService.getAllCondiments();
+        List<String> condimentsList = iCondimentsService.getAllCondiments();
         model.addAttribute("condimentsList", condimentsList);
         return "index";
     }

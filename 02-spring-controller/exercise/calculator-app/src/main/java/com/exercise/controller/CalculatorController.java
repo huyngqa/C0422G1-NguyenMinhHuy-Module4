@@ -1,6 +1,6 @@
 package com.exercise.controller;
 
-import com.exercise.service.CalculatorService;
+import com.exercise.service.ICalculatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,7 +13,7 @@ import java.util.Map;
 public class CalculatorController {
 
     @Autowired
-    private CalculatorService calculatorService;
+    private ICalculatorService iCalculatorService;
 
     @GetMapping("")
     public String showCalculator() {
@@ -23,7 +23,7 @@ public class CalculatorController {
     @GetMapping("/calculate")
     public String calculate(@RequestParam int number1, @RequestParam int number2, @RequestParam String operator,
                             ModelMap modelMap) {
-        Map<String, String> mapResult = calculatorService.calculate(number1, number2, operator);
+        Map<String, String> mapResult = iCalculatorService.calculate(number1, number2, operator);
         modelMap.addAllAttributes(mapResult);
         return "index";
     }
