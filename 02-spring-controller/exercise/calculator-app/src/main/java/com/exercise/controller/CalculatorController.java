@@ -21,7 +21,7 @@ public class CalculatorController {
     }
 
     @GetMapping("/calculate")
-    public String calculate(@RequestParam int number1, @RequestParam int number2, @RequestParam String operator,
+    public String getCalculateResult(@RequestParam int number1, @RequestParam int number2, @RequestParam String operator,
                             ModelMap modelMap) {
         Map<String, String> mapResult = iCalculatorService.calculate(number1, number2, operator);
         modelMap.addAllAttributes(mapResult);
