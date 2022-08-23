@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head th:replace="/layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Viết blog mới</h3>
+<p>
+    <a href="/">
+        Về trang chủ
+    </a>
+</p>
+<div id="form">
+    <form action="/save" th:object="${blog}"
+          method="POST" novalidate="novalidate" enctype="multipart/form-data">
+        <div>
+            <label>Tiêu đề
+                <input type="text" th:field="*{title}"/>
+            </label>
+        </div>
+        <div>
+            <label>Tác giả
+                <input type="text" th:field="*{author}"/>
+            </label>
+        </div>
+
+        <div>
+            <label>Nội dung
+                <textarea th:field="*{content}"></textarea>
+            </label>
+        </div>
+        <div>
+            <label>Tóm tắt
+                <input type="text" th:field="*{summary}"/>
+            </label>
+        </div>
+        <input type="submit" value="Lưu"/>
+    </form>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
