@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head th:replace="layout :: head">
+</head>
+<body>
+<nav th:replace="layout :: nav"></nav>
+<div class="row">
+    <form action="/list">
+        <div class="col-lg-3">
+            <div class="input-group">
+                <div class="form-outline">
+                    <input type="search" id="search" name="keyword"/>
+                    <label class="form-label" for="search">Tiêu đề</label>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <select name="categoryName" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                <option value="">Chọn thể loại</option>
+                <option th:each="categoryObj : ${categories}"
+                        th:value="${categoryObj.categoryName}"
+                        th:text="${categoryObj.categoryName}">
+                </option>
+            </select>
+        </div>
+        <div class="col-lg-3">
+            <button type="submit" class="btn btn-primary">
+                Tìm kiếm
+            </button>
+        </div>
+    </form>
+</div>
+<table class="table">
+    <thead class="text-dark">
+    <tr>
+        <th>#</th>
+        <th>Tiêu đề</th>
+        <th>Tác giả</th>
+        <th>Tóm tắt</th>
+        <th>Ngày tạo</th>
+        <th>Thể loại</th>
+        <th>Chức năng</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="blog, status : ${blogList}">
+        <td th:text="${status.count}"></td>
+        <td th:text="${blog.title}"></td>
+        <td th:text="${blog.author}"></td>
+        <td th:text="${blog.summary}"></td>
+        <td th:text="${blog.getFormatCreationTime()}"></td>
+        <td th:text="${blog.category.categoryName}"></td>
+        <td>
+            <a class="btn btn-primary" th:href="@{/details(id=${blog.id})}">Xem blog</a>
+            <a class="btn btn-primary" th:href="@{/update(id=${blog.id})}">Chỉnh sửa</a>
+            <button type="button" class="btn btn-primary"
+                    th:attr="onclick=|showInfoBlog('${blog.id}','${blog.title}')|"
+                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Xoá
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" th:href="@{/list(page=${blogList.number-1}, keyword=${keyword})}"
+               aria-label="Previous"
+               th:if="${blogList.hasPrevious()}">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li class="page-item">
+            <span th:text="${blogList.number+1}"></span>/
+            <span th:text="${blogList.totalPages}"></span>
+        </li>
+        <li class="page-item">
+            <a class="page-link" th:href="@{/list(page=${blogList.number+1}, keyword=${keyword})}"
+               aria-label="Next"
+               th:if="${blogList.hasNext()}">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+<p th:text="${message}"></p>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Bạn có muốn xoá không?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/delete" method="get">
+                <div class="modal-body">
+                    <input type="hidden" name="idDelete" id="idDelete">
+                    <span id="titleDelete"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Xoá</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script th:replace="layout :: script"></script>
+<script>
+    function showInfoBlog(id, title) {
+        document.getElementById("idDelete").value = id;
+        document.getElementById("titleDelete").innerText = title;
+    }
+</script>
+</body>
+</html>
