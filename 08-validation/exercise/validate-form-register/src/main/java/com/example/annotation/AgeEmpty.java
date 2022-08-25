@@ -11,7 +11,7 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = AgeEmptyValidator.class)
 @Documented
 public @interface AgeEmpty {
-    String message() default "Vui lòng nhập ngày tháng năm sinh";
+    String message() default "Vui lòng nhập đúng định dạng ngày tháng năm sinh";
 
     Class<?>[] groups() default {};
 

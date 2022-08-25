@@ -10,7 +10,9 @@ import java.time.Period;
 public class AgeValidator implements ConstraintValidator<Age, String> {
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        if(value.equals("")) {
+        try {
+            LocalDate.parse(value);
+        } catch (Exception exception) {
             return true;
         }
         int checkAge = Period.between(LocalDate.parse(value), LocalDate.now()).getYears();
