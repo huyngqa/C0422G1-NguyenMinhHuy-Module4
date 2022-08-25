@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/add-style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+    <link href="https://cdn01.jotfor.ms/static/formCss.css?3.3.34943" rel="stylesheet" type="text/css"/>
+    <link type="text/css" rel="stylesheet" href="https://cdn02.jotfor.ms/css/styles/nova.css?3.3.34943"/>
+    <link type="text/css" rel="stylesheet"
+          href="https://cdn03.jotfor.ms/themes/CSS/55ae259b977cdf17798b4567.css?themeRevisionID=55bab23d977cdfdb338b4567"/>
+    <link type="text/css" rel="stylesheet"
+          href="https://cdn01.jotfor.ms/css/styles/payment/payment_feature.css?3.3.34943"/>
+</head>
+<body>
+<form action="/save" class="jotform-form" method="post" th:object="${userDto}" name="form_222155024937453" id="222155024937453"
+      accept-charset="utf-8" autocomplete="on">
+    <div role="main" class="form-all">
+        <ul class="form-section page-section">
+            <li id="cid_293" class="form-input-wide" data-type="control_head">
+                <div class="form-header-group header-default"
+                     style="background-image: url('/img/user.jpg')">
+                    <div class="header-text httal htvam">
+                        <h2 id="header_293" class="form-header" data-component="header">
+                            Thêm người dùng
+                        </h2>
+                        <div id="subHeader_293" class="form-subHeader">
+                            Rất vui được gặp bạn
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="form-line jf-required" data-type="control_email" id="id_324">
+                <label class="form-label form-label-left form-label-auto" id="label_324" for="input_324">
+                    Họ
+                    <span class="form-required">
+            *
+          </span>
+                </label>
+                <div id="cid_324" class="form-input jf-required">
+          <span class="form-sub-label-container" style="vertical-align:top">
+            <input type="text" id="input_324" th:field="*{firstName}" class="form-textbox validate[required, day-name-cell]"
+                   data-defaultvalue="" size="50" value="" data-component="name"
+                   aria-labelledby="label_324 sublabel_input_324" />
+          </span>
+                    <span class="text-danger" th:errors="*{firstName}"></span>
+                </div>
+            </li>
+            <li class="form-line jf-required" data-type="control_email" id="id_325">
+                <label class="form-label form-label-left form-label-auto" id="label_325" for="input_324">
+                    Tên
+                    <span class="form-required">
+            *
+          </span>
+                </label>
+                <div id="cid_325" class="form-input jf-required">
+          <span class="form-sub-label-container" style="vertical-align:top">
+            <input type="text" id="input_325" th:field="*{lastName}" class="form-textbox validate[required, day-name-cell]"
+                   data-defaultvalue="" size="50" value="" data-component="name"
+                   aria-labelledby="label_324 sublabel_input_324" />
+          </span>
+                    <span class="text-danger" th:errors="*{lastName}"></span>
+                </div>
+            </li>
+            <li class="form-line jf-required" data-type="control_birthdate" id="id_7">
+                <label class="form-label form-label-left form-label-auto" id="label_7" for="input_7_day">
+                    Birth Date
+                    <span class="form-required">
+            *
+          </span>
+                </label>
+                <div id="cid_7" class="form-input jf-required">
+                    <div data-wrapper-react="true">
+                        <span class="form-sub-label-container" style="vertical-align:top">
+            <input type="date" id="input_7_day" th:field="*{birthDay}" data-type="mask-number"
+                   class="mask-phone-number form-textbox validate[required, Fill Mask]" data-defaultvalue=""
+                   autoComplete="section-input_311 on" data-masked="true" value="" data-component="phone"
+                   aria-labelledby="label_311" />
+          </span>
+                        <span class="text-danger" th:errors="*{birthDay}"></span>
+                    </div>
+                </div>
+            </li>
+            <li class="form-line jf-required" data-type="control_phone" id="id_6">
+                <label class="form-label form-label-left form-label-auto" id="label_6" for="input_6_full">
+                    Phone Number:
+                    <span class="form-required">
+            *
+          </span>
+                </label>
+                <div id="cid_6" class="form-input jf-required">
+          <span class="form-sub-label-container" style="vertical-align:top">
+            <input type="tel" id="input_6_full" th:field="*{phone}" data-type="mask-number"
+                   class="mask-phone-number form-textbox validate[required, Fill Mask]" data-defaultvalue=""
+                   autoComplete="section-input_6 tel-national" data-masked="true" value="" data-component="phone"
+                   aria-labelledby="label_6" />
+            <label class="form-sub-label" for="input_6_full" id="sublabel_6_masked" style="min-height:13px"
+                   aria-hidden="false">  </label>
+          </span>
+                    <span class="text-danger" th:errors="*{phone}"></span>
+                </div>
+            </li>
+            <li class="form-line" data-type="control_email" id="id_5">
+                <label class="form-label form-label-left form-label-auto" id="label_5" for="input_5"> E-mail
+                    Address: </label>
+                <div id="cid_5" class="form-input">
+                    <input type="email" id="input_5" th:field="*{email}" class="form-textbox validate[Email]"
+                           data-defaultvalue="" size="30" value="" placeholder="ex: myname@example.com"
+                           data-component="email" aria-labelledby="label_5"/>
+                </div>
+                <span class="text-danger" th:errors="*{email}"></span>
+            </li>
+            <li class="form-line" data-type="control_button" id="id_2">
+                <div id="cid_2" class="form-input-wide">
+                    <div style="text-align:center" data-align="center"
+                         class="form-buttons-wrapper form-buttons-center   jsTest-button-wrapperField">
+                        <button id="input_2" type="submit"
+                                class="form-submit-button submit-button jf-form-buttons jsTest-submitField"
+                                data-component="button" data-content="">
+                            Thêm
+                        </button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</form>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
