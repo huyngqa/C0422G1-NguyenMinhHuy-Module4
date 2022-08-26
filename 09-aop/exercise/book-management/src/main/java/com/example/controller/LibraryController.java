@@ -44,7 +44,8 @@ public class LibraryController {
     }
 
     @GetMapping("/pay")
-    public String payBook(@RequestParam int id, Model model) throws Exception {
+    public String payBook(@RequestParam int id,
+                          RedirectAttributes redirectAttributes) throws Exception {
         BookCard bookCard = iBookCardService.getById(id);
         if(bookCard == null) {
             throw new Exception();
@@ -52,9 +53,8 @@ public class LibraryController {
         Book book = bookCard.getBook();
         book.setAmount(book.getAmount() + 1);
         iBookCardService.deleteById(id);
-        model.addAttribute("books", iBookService.findAllBook());
-        model.addAttribute("message", "Đã trả sách");
-        return "index";
+        redirectAttributes.addFlashAttribute("message", "Đã trả sách");
+        return "redirect:/list";
     }
 
     @ExceptionHandler(value = Exception.class)
