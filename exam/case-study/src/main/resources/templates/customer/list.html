@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{/layout::css}"></th:block>
+    <link rel="stylesheet" href="/css/list-style.css">
+</head>
+<body>
+<div th:replace="~{/layout :: header}"></div>
+<div class="table-title w-100 m-0">
+    <div class="row">
+        <div class="col-sm-6">
+            <h2>Manage <b>Customer</b></h2>
+        </div>
+        <div class="col-sm-3">
+            <form action="/customer?actionCustomer=search" method="post">
+                <input type="text" name="searchCustomer" placeholder="Enter customer name">
+                <button type="submit" class="btn btn-success"> Search </button>
+            </form>
+        </div>
+        <div class="col-sm-3">
+            <a href="/customer/create" class="btn btn-success" data-toggle="modal"><i
+                    class="material-icons">&#xE147;</i>
+                <span>Add New Customer</span></a>
+        </div>
+    </div>
+</div>
+<div class="table-responsive p-0 m-0 w-100">
+    <table id="tableCustomer" class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Type Customer</th>
+            <th>Name</th>
+            <th>Date of birth</th>
+            <th>Gender</th>
+            <th>ID Card</th>
+            <th>Phone number</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="customer, status : ${customers}">
+                <td th:text="${status.count}"></td>
+                <td th:text="${customer.customerType.customerTypeName}"></td>
+                <td th:text="${customer.name}"></td>
+                <td th:text="${customer.birthday}"></td>
+                <td th:text="${customer.getStringGender()}"></td>
+                <td th:text="${customer.idCard}"></td>
+                <td th:text="${customer.phone}"></td>
+                <td th:text="${customer.email}"></td>
+                <td th:text="${customer.address}"></td>
+                <td>
+                    <a th:href="@{/customer/update(id=${customer.id})}" class="btn btn-primary text-light">
+                        <i class="material-icons"
+                            data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                    <button type="button" th:attr="onclick=|displayCustomerInModal('${customer.id}','${customer.name}')|"
+                            class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal">
+                        <i class="material-icons"
+                           data-toggle="tooltip"
+                           title="Delete">&#xE872;</i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="deleteCustomerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            <form action="/customer/delete">
+                <div class="modal-body">
+                    <input type="text" hidden id="deleteId" name="deleteId">
+                    Do you want to delete a customer: <span id="deleteName"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="text-success" th:text="${message}"></div>
+<div th:replace="~{/layout :: footer}"></div>
+<script>
+    function displayCustomerInModal(id, name) {
+        document.getElementById("deleteId").value = id;
+        document.getElementById("deleteName").innerText = name;
+    }
+</script>
+</body>
+</html>

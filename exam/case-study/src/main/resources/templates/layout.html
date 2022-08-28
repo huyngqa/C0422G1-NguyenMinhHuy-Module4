@@ -1,14 +1,22 @@
-<html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
 <head>
     <title>Furama</title>
-    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+    <th:block th:fragment="css">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </th:block>
 </head>
 <body>
+<div th:fragment="header">
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
             <div class="col-auto col-sm-5 col-lg-3 d-flex align-items-center bestel-logo">
                 <a class="navbar-brand header-logo" href="/furama">
-                    <img src="../../resources/img/logo.png" alt="logo" class="d-inline-block align-text-top img-fluid">
+                    <img src="/img/logo.png" alt="logo" class="d-inline-block align-text-top img-fluid">
                 </a>
             </div>
             <div class="col col-md-auto col-lg-3 d-flex">
@@ -77,5 +85,24 @@
             </div>
         </div>
     </nav>
+</div>
+<div th:fragment="footer" class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="card ">
+                <div class="card-header bg-success">
+                    Furama Resort
+                </div>
+                <div class="card-body bg-light" id="color-foot">
+                    <h5 class="card-title">Thank you so much!</h5>
+                    <p class="card-text">Hẹn quý khách vào những ngày tới.</p>
+                    <a href="/furama" class="btn btn-primary">Go home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/d6e19ea644.js" crossorigin="anonymous"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</div>
 </body>
 </html>

@@ -1,9 +1,11 @@
-<html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
 <head>
     <title>Furama</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <th:block th:replace="~{/layout :: css}"></th:block>
 </head>
 <body>
+<div th:replace="layout :: header"></div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12 col-sm-12" id="home">
@@ -59,7 +61,6 @@
         </div>
     </div>
 </div>
-<script src="https://kit.fontawesome.com/d6e19ea644.js" crossorigin="anonymous"></script>
-<script src="/js/bootstrap.min.js"></script>
+<div th:replace="layout :: footer"></div>
 </body>
 </html>
