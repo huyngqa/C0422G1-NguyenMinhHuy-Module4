@@ -1,6 +1,5 @@
 package com.example.controller;
 
-import com.example.model.Cart;
 import com.example.model.Product;
 import com.example.service.ICartService;
 import com.example.service.IProductService;
