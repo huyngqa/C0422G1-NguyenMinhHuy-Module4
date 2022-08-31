@@ -10,10 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -56,10 +53,20 @@ public class BlogRestController {
 
     @GetMapping("/blog/{id}")
     public ResponseEntity<Blog> getBlogRest(@PathVariable int id) {
-        Optional<Blog> blog = Optional.ofNullable(iBlogService.findBlogById(id));
+        Optional<Blog> blog = iBlogService.findBlogById(id);
         if (!blog.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        return new ResponseEntity<>(blog.get(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/deleteBlog/{id}")
+    public ResponseEntity<Blog> deleteBlog(@PathVariable int id) {
+        Optional<Blog> blog = iBlogService.findBlogById(id);
+        if (!blog.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        iBlogService.deleteBlogById(id);
         return new ResponseEntity<>(blog.get(), HttpStatus.OK);
     }
 }
