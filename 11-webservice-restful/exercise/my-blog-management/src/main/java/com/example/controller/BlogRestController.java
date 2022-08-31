@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -45,18 +46,18 @@ public class BlogRestController {
     }
 
     @GetMapping("/category/{id}")
-    public ResponseEntity<Category> getCategoryRest(@PathVariable int id) {
-        Optional<Category> category = Optional.ofNullable(iCategoryService.findCategoryById(id));
-        if (!category.isPresent()) {
+    public ResponseEntity<List<Blog>> getCategoryRest(@PathVariable int id) {
+        List<Blog> blogs = iBlogService.findAllByByCategory_Id(id);
+        if (blogs.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(category.get(), HttpStatus.OK);
+        return new ResponseEntity<>(blogs, HttpStatus.OK);
     }
 
     @GetMapping("/blog/{id}")
     public ResponseEntity<Blog> getBlogRest(@PathVariable int id) {
         Optional<Blog> blog = Optional.ofNullable(iBlogService.findBlogById(id));
-        if (blog.isPresent()) {
+        if (!blog.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(blog.get(), HttpStatus.OK);
