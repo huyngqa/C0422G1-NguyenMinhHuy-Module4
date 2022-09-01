@@ -24,7 +24,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/blogRest")
-public class BlogRestController {
+public class HomeRestController {
     @Autowired
     private ICategoryService iCategoryService;
 
@@ -51,9 +51,9 @@ public class BlogRestController {
 
     @GetMapping("/category/{id}")
     public ResponseEntity<List<Blog>> getCategoryRest(@PathVariable int id) {
-        List<Blog> blogs = iBlogService.findAllByByCategory_Id(id);
+        List<Blog> blogs = iBlogService.findAllBlogByCategoryId(id);
         if (blogs.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(blogs, HttpStatus.OK);
     }
