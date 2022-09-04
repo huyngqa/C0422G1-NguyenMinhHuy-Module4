@@ -1,6 +1,6 @@
 package com.furama.service.impl;
 
-import com.furama.model.customer.CustomerType;
+import com.furama.model.person.CustomerType;
 import com.furama.repository.ICustomerTypeRepository;
 import com.furama.service.ICustomerTypeService;
 import org.springframework.beans.factory.annotation.Autowired;

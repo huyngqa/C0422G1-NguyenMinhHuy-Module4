@@ -1,8 +1,9 @@
 package com.furama.controller;
 
-import com.furama.model.person.Customer;
-import com.furama.service.ICustomerService;
-import com.furama.service.ICustomerTypeService;
+import com.furama.model.facility.Facility;
+import com.furama.service.IFacilityService;
+import com.furama.service.IFacilityTypeService;
+import com.furama.service.IRentTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -12,59 +13,63 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/customer")
-public class CustomerController {
+@RequestMapping("/service")
+public class FacilityController {
     @Autowired
-    private ICustomerService iCustomerService;
+    private IFacilityService iFacilityService;
     @Autowired
-    private ICustomerTypeService iCustomerTypeService;
+    private IRentTypeService iRentTypeService;
+    @Autowired
+    private IFacilityTypeService iFacilityTypeService;
 
     @GetMapping( value = {"","/list"})
     public String goListCustomer(@RequestParam(defaultValue = "") String keyword,
                                  @PageableDefault(size = 5) Pageable pageable,
                                  Model model) {
         model.addAttribute("keyword", keyword);
-        model.addAttribute("customers", iCustomerService.findAllCustomer(keyword, keyword, keyword, pageable));
-        return "customer/list";
+        model.addAttribute("facilityList", iFacilityService.findAllFacility(keyword, pageable));
+        return "service/list";
     }
 
     @GetMapping("/create")
     public String goFormCreateCustomer(Model model) {
-        model.addAttribute("customerTypeList", iCustomerTypeService.findAllCustomerType());
-        model.addAttribute("customer", new Customer());
-        return "customer/add";
+        model.addAttribute("rentTypeList", iRentTypeService.findAllRentType());
+        model.addAttribute("facilityTypeList", iFacilityTypeService.findAllFacilityType());
+        model.addAttribute("facility", new Facility());
+        return "service/add";
     }
 
     @PostMapping("/create")
-    public String createNewCustomer(@ModelAttribute Customer customer,
+    public String createNewCustomer(@ModelAttribute Facility facility,
                                     RedirectAttributes redirectAttributes) {
-        iCustomerService.saveCustomer(customer);
+        iFacilityService.saveFacility(facility);
         redirectAttributes.addFlashAttribute("message",
-                "Đã thêm thành công khách hàng: " + customer.getName());
-        return "redirect:/customer/list";
+                "Đã thêm thành công dịch vụ: " + facility.getName());
+        return "redirect:/service/list";
     }
 
     @GetMapping("/update")
     public String goFormUpdateCustomer(@RequestParam int id, Model model) {
-        model.addAttribute("customerTypeList", iCustomerTypeService.findAllCustomerType());
-        model.addAttribute("customer", iCustomerService.findCustomerById(id));
-        return "customer/edit";
+        model.addAttribute("rentTypeList", iRentTypeService.findAllRentType());
+        model.addAttribute("facilityTypeList", iFacilityTypeService.findAllFacilityType());
+        model.addAttribute("facility", iFacilityService.findFacilityById(id));
+        return "service/edit";
     }
 
     @PostMapping("/update")
-    public String updateCustomer(@ModelAttribute Customer customer,
+    public String updateCustomer(@ModelAttribute Facility facility,
                                  RedirectAttributes redirectAttributes) {
-        iCustomerService.saveCustomer(customer);
+        iFacilityService.saveFacility(facility);
         redirectAttributes.addFlashAttribute("message",
                 "Đã cập nhật thành công");
-        return "redirect:/customer/list";
+        return "redirect:/service/list";
     }
 
     @GetMapping("/delete")
     public String deleteCustomer(@RequestParam int deleteId, RedirectAttributes redirectAttributes) {
-        iCustomerService.removeCustomerById(deleteId);
+        iFacilityService.removeFacilityById(deleteId);
         redirectAttributes.addFlashAttribute("message",
                 "Đã cập nhật thành công");
-        return "redirect:/customer/list";
+        return "redirect:/service/list";
     }
 }

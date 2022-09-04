@@ -3,145 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <th:block th:replace></th:block>
+    <th:block th:replace="~{/layout::css}"></th:block>
 </head>
 <body>
 <div th:replace="~{/layout :: header}"></div>
 <div class="container-fluid">
     <h3 class="text-black-">Edit Service</h3>
-    <form class="row g-3" method="post">
+    <form action="/service/update" class="row g-3" method="post" th:object="${facility}">
+        <input type="hidden" th:field="*{id}">
         <div class="col-md-12">
             <label for="name" class="form-label">Name Service</label>
-            <input type="text" class="form-control" id="name" name="name" value="${facility.facilityName}">
-            <p class="text-danger">${nameErr}</p>
+            <input type="text" class="form-control" id="name" th:field="*{name}">
         </div>
         <div class="col-md-12">
             <label for="area" class="form-label">Area</label>
-            <input type="text" class="form-control" id="area" name="area" value="${facility.usableArea}">
+            <input type="text" class="form-control" id="area" th:field="*{area}">
         </div>
         <div class="col-md-12">
             <label for="cost" class="form-label">Cost</label>
-            <input type="text" class="form-control" id="cost" name="cost" value="${facility.rentalCosts}">
+            <input type="text" class="form-control" id="cost" th:field="*{cost}">
         </div>
         <div class="col-md-12">
             <label for="max_people" class="form-label">Max people </label>
-            <input type="text" class="form-control" id="max_people" name="max_people"
-                   value="${facility.maximumNumOfPeople}">
+            <input type="number" class="form-control" id="max_people" th:field="*{maxPeople}">
         </div>
         <div class="col-md-12">
             <label for="rent_type" class="form-label">Rent Type</label>
-            <select name="rent_type" id="rent_type" class="form-select">
-                <c:forEach var="rentalType" items="${rentalTypeList}">
-                    <c:if test="${rentalType.rentalTypeId == facility.rentalType.rentalTypeId}">
-                        <option selected value="${rentalType.rentalTypeId}">${rentalType.rentalTypeName}</option>
-                    </c:if>
-                    <c:if test="${rentalType.rentalTypeId != facility.rentalType.rentalTypeId}">
-                        <option value="${rentalType.rentalTypeId}">${rentalType.rentalTypeName}</option>
-                    </c:if>
-                </c:forEach>
+            <select th:field="*{rentType}" id="rent_type" class="form-select">
+                <option th:each="rentType : ${rentTypeList}"
+                        th:value="${rentType.id}" th:text="${rentType.name}"></option>
             </select>
         </div>
         <div class="col-md-12">
             <label class="form-label">Service Type</label>
-            <select name="service_type" class="form-select" id="selectService" onchange="showService(this)">
-                <c:forEach var="typeFacility" items="${typeFacilityList}">
-                    <c:if test="${typeFacility.typeFacilityId == facility.typeFacility.typeFacilityId}">
-                        <option selected
-                                value="${typeFacility.typeFacilityId}">${typeFacility.typeFacilityName}</option>
-                    </c:if>
-                    <c:if test="${typeFacility.typeFacilityId != facility.typeFacility.typeFacilityId}">
-                        <option value="${typeFacility.typeFacilityId}">${typeFacility.typeFacilityName}</option>
-                    </c:if>
-                </c:forEach>
+            <select th:field="*{facilityType}" class="form-select" id="selectService" onchange="showService(this)">
+                <option th:each="facilityType : ${facilityTypeList}"
+                        th:value="${facilityType.id}" th:text="${facilityType.name}"></option>
             </select>
         </div>
-        <c:if test="${facility.typeFacility.typeFacilityId == 1}">
-            <div class="col-md-12 " id="standard" style="display: block">
-                <label for="standard_villa" class="form-label">Standard Room </label>
-                <input type="text" class="form-control" id="standard_villa" name="standard_room"
-                       value="${facility.standardRoom}">
-            </div>
+        <div class="col-md-12 " id="standard" style="display: block">
+            <label for="standard_room" class="form-label">Standard Room </label>
+            <input type="text" class="form-control" id="standard_room" th:field="*{standardRoom}">
+        </div>
 
-            <div class="col-md-12 " id="convenience" style="display: block">
-                <label for="description_other_convenience_villa" class="form-label">Description other
-                    convenience</label>
-                <input type="text" class="form-control" id="description_other_convenience_villa"
-                       name="description_other_convenience" value="${facility.descriptionOtherConvenience}">
-            </div>
+        <div class="col-md-12 " id="convenience" style="display: block">
+            <label for="description_other_convenience" class="form-label">Description other convenience</label>
+            <input type="text" class="form-control" id="description_other_convenience"
+                   th:field="*{descriptionOtherConvenience}">
+        </div>
 
-            <div class="col-md-12 " id="pool" style="display: block">
-                <label for="pool_area_villa" class="form-label">Pool area </label>
-                <input type="text" class="form-control" id="pool_area_villa" name="pool_area"
-                       value="${facility.poolArea}">
-            </div>
+        <div class="col-md-12 " id="pool" style="display: block">
+            <label for="pool_area" class="form-label">Pool area </label>
+            <input type="text" class="form-control" id="pool_area" th:field="*{poolArea}">
+        </div>
 
-            <div class="col-md-12" id="floors" style="display: block">
-                <label for="number_of_floors_villa" class="form-label">Number of floors </label>
-                <input type="text" class="form-control" value="${facility.numOfFloor}" id="number_of_floors_villa"
-                       name="number_of_floors">
-                <p class="text-danger">${floorErr}</p>
-            </div>
-            <div class="col-md-12 " id="sv-free" style="display: none">
-                <label for="service_free_villa" class="form-label">Service free </label>
-                <input type="text" class="form-control" id="service_free_villa" name="facility_free">
-            </div>
-        </c:if>
-        <c:if test="${facility.typeFacility.typeFacilityId == 2}">
-            <div class="col-md-12 " id="standard" style="display: block">
-                <label for="standard_house" class="form-label">Standard Room </label>
-                <input type="text" class="form-control" id="standard_house" name="standard_room"
-                       value="${facility.standardRoom}">
-            </div>
+        <div class="col-md-12" id="floors" style="display: block">
+            <label for="number_of_floors" class="form-label">Number of floors </label>
+            <input type="number" class="form-control" id="number_of_floors" th:field="*{numOfFloors}">
+        </div>
 
-            <div class="col-md-12 " id="convenience" style="display: block">
-                <label for="description_other_convenience_house" class="form-label">Description other
-                    convenience</label>
-                <input type="text" class="form-control" id="description_other_convenience_house"
-                       name="description_other_convenience" value="${facility.descriptionOtherConvenience}">
-            </div>
-            <div class="col-md-12 " id="pool" style="display: block">
-                <label for="pool_area_house" class="form-label">Pool area </label>
-                <input type="text" class="form-control" id="pool_area_house" name="pool_area">
-            </div>
-            <div class="col-md-12" id="floors" style="display: block">
-                <label for="number_of_floors_house" class="form-label">Number of floors </label>
-                <input type="text" class="form-control" value="${facility.numOfFloor}" id="number_of_floors_house"
-                       name="number_of_floors">
-                <p class="text-danger">${floorErr}</p>
-            </div>
-            <div class="col-md-12 " id="sv-free" style="display: none">
-                <label for="service_free_house" class="form-label">Service free </label>
-                <input type="text" class="form-control" id="service_free_house" name="facility_free">
-            </div>
-        </c:if>
-        <c:if test="${facility.typeFacility.typeFacilityId == 3}">
-            <div class="col-md-12 " id="standard" style="display: block">
-                <label for="standard_room" class="form-label">Standard Room </label>
-                <input type="text" class="form-control" id="standard_room" name="standard_room">
-            </div>
+        <div class="col-md-12 " id="sv-free" style="display: none">
+            <label for="service_free" class="form-label">Service free </label>
+            <input type="text" class="form-control" id="service_free" th:field="*{facilityFree}">
+        </div>
+<!--        <div th:if="${facility.facilityType.id == 1}">-->
+<!--            <div class="col-md-12 " style="display: block">-->
+<!--                <label class="form-label">Standard Room </label>-->
+<!--                <input type="text" class="form-control" th:field="*{standardRoom}">-->
+<!--            </div>-->
 
-            <div class="col-md-12 " id="convenience" style="display: block">
-                <label for="description_other_convenience_room" class="form-label">Description other
-                    convenience</label>
-                <input type="text" class="form-control" id="description_other_convenience_room"
-                       name="description_other_convenience">
-            </div>
-            <div class="col-md-12 " id="pool" style="display: block">
-                <label for="pool_area_room" class="form-label">Pool area </label>
-                <input type="text" class="form-control" id="pool_area_room" name="pool_area">
-            </div>
-            <div class="col-md-12" id="floors" style="display: block">
-                <label for="number_of_floors_room" class="form-label">Number of floors </label>
-                <input type="text" class="form-control" id="number_of_floors_room"
-                       name="number_of_floors">
-                <p class="text-danger">${floorErr}</p>
-            </div>
-            <div class="col-md-12 " id="sv-free" style="display: none">
-                <label for="service_free" class="form-label">Service free </label>
-                <input type="text" class="form-control" id="service_free" name="facility_free"
-                       value="${facility.facilityFree}">
-            </div>
-        </c:if>
+<!--            <div class="col-md-12 " style="display: block">-->
+<!--                <label class="form-label">Description other convenience</label>-->
+<!--                <input type="text" class="form-control"-->
+<!--                       th:field="*{descriptionOtherConvenience}">-->
+<!--            </div>-->
+
+<!--            <div class="col-md-12 " style="display: block">-->
+<!--                <label class="form-label">Pool area </label>-->
+<!--                <input type="text" class="form-control" th:field="*{poolArea}">-->
+<!--            </div>-->
+
+<!--            <div class="col-md-12" style="display: block">-->
+<!--                <label class="form-label">Number of floors </label>-->
+<!--                <input type="number" class="form-control" th:field="*{numOfFloors}">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div th:if="${facility.facilityType.id == 2}">-->
+<!--            <div class="col-md-12 " style="display: block">-->
+<!--                <label class="form-label">Standard Room </label>-->
+<!--                <input type="text" class="form-control" th:field="*{standardRoom}">-->
+<!--            </div>-->
+
+<!--            <div class="col-md-12 " style="display: block">-->
+<!--                <label class="form-label">Description other convenience</label>-->
+<!--                <input type="text" class="form-control"-->
+<!--                       th:field="*{descriptionOtherConvenience}">-->
+<!--            </div>-->
+
+<!--            <div class="col-md-12" style="display: block">-->
+<!--                <label class="form-label">Number of floors </label>-->
+<!--                <input type="number" class="form-control" th:field="*{numOfFloors}">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div th:if="${facility.facilityType.id == 3}">-->
+<!--            <div class="col-md-12 " id="sv-free" style="display: none">-->
+<!--                <label for="service_free" class="form-label">Service free </label>-->
+<!--                <input type="text" class="form-control" id="service_free" th:field="*{facilityFree}">-->
+<!--            </div>-->
+<!--        </div>-->
         <div class="col-12 ">
             <button type="submit" class="btn btn-primary">Edit</button>
         </div>

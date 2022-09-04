@@ -1,11 +1,11 @@
 package com.furama.service;
 
-import com.furama.model.customer.Customer;
+import com.furama.model.person.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface ICustomerService {
-    Page<Customer> findAllCustomer(Pageable pageable);
+    Page<Customer> findAllCustomer(String name, String phone, String email, Pageable pageable);
 
     Customer findCustomerById(int id);
 

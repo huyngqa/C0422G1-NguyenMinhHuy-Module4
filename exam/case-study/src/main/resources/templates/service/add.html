@@ -3,80 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <th:block th:replace></th:block>
+    <th:block th:replace="~{/layout::css}"></th:block>
 </head>
 <body>
 <div th:replace="~{/layout :: header}"></div>
 <div class="container-fluid">
     <h3 class="text-black-">ADD NEW SERVICE</h3>
-    <form class="row g-3" action="" method="post">
+    <form class="row g-3" action="/service/create" method="post" th:object="${facility}">
         <div class="col-md-12">
             <label for="name" class="form-label">Name Service</label>
-            <input type="text" class="form-control" id="name" name="name">
-            <p class="text-danger">${nameErr}</p>
+            <input type="text" class="form-control" id="name" th:field="*{name}">
         </div>
         <div class="col-md-12">
             <label for="area" class="form-label">Area</label>
-            <input type="text" class="form-control" id="area" name="area">
+            <input type="text" class="form-control" id="area" th:field="*{area}">
         </div>
         <div class="col-md-12">
             <label for="cost" class="form-label">Cost</label>
-            <input type="text" class="form-control" id="cost" name="cost">
+            <input type="text" class="form-control" id="cost" th:field="*{cost}">
         </div>
         <div class="col-md-12">
             <label for="max_people" class="form-label">Max people </label>
-            <input type="number" class="form-control" id="max_people" name="max_people">
+            <input type="number" class="form-control" id="max_people" th:field="*{maxPeople}">
         </div>
         <div class="col-md-12">
             <label for="rent_type" class="form-label">Rent Type</label>
-            <select name="rent_type" id="rent_type" class="form-select">
-                <c:forEach var="rentalType" items="${rentalTypeList}">
-                    <option value="${rentalType.rentalTypeId}">${rentalType.rentalTypeName}</option>
-                </c:forEach>
+            <select th:field="*{rentType}" id="rent_type" class="form-select">
+                <option th:each="rentType : ${rentTypeList}"
+                        th:value="${rentType.id}" th:text="${rentType.name}"></option>
             </select>
         </div>
         <div class="col-md-12">
             <label class="form-label">Service Type</label>
-            <select name="service_type" class="form-select" id="selectService" onchange="showService(this)">
-                <c:forEach var="typeFacility" items="${typeFacilityList}">
-                    <option value="${typeFacility.typeFacilityId}">${typeFacility.typeFacilityName}</option>
-                </c:forEach>
+            <select th:field="*{facilityType}" class="form-select" id="selectService" onchange="showService(this)">
+                <option th:each="facilityType : ${facilityTypeList}"
+                        th:value="${facilityType.id}" th:text="${facilityType.name}"></option>
             </select>
         </div>
         <div class="col-md-12 " id="standard" style="display: block">
             <label for="standard_room" class="form-label">Standard Room </label>
-            <input type="text" class="form-control" id="standard_room" name="standard_room">
+            <input type="text" class="form-control" id="standard_room" th:field="*{standardRoom}">
         </div>
 
         <div class="col-md-12 " id="convenience" style="display: block">
             <label for="description_other_convenience" class="form-label">Description other convenience</label>
             <input type="text" class="form-control" id="description_other_convenience"
-                   name="description_other_convenience">
+                   th:field="*{descriptionOtherConvenience}">
         </div>
 
         <div class="col-md-12 " id="pool" style="display: block">
             <label for="pool_area" class="form-label">Pool area </label>
-            <input type="text" class="form-control" id="pool_area" name="pool_area">
+            <input type="text" class="form-control" id="pool_area" th:field="*{poolArea}">
         </div>
 
         <div class="col-md-12" id="floors" style="display: block">
             <label for="number_of_floors" class="form-label">Number of floors </label>
-            <input type="number" class="form-control" id="number_of_floors" name="number_of_floors">
-            <p class="text-danger">${floorErr}</p>
+            <input type="number" class="form-control" id="number_of_floors" th:field="*{numOfFloors}">
         </div>
 
         <div class="col-md-12 " id="sv-free" style="display: none">
             <label for="service_free" class="form-label">Service free </label>
-            <input type="text" class="form-control" id="service_free" name="facility_free">
+            <input type="text" class="form-control" id="service_free" th:field="*{facilityFree}">
         </div>
 
         <div class="col-12 ">
             <button type="submit" class="btn btn-primary">Add New</button>
         </div>
     </form>
-    <c:if test="${message != null}" >
-        <p>${message}</p>
-    </c:if>
 </div>
 <div th:replace="~{/layout :: footer}"></div>
 <script>

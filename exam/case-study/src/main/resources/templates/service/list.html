@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <th:block th:replace></th:block>
+    <th:block th:replace="~{/layout::css}"></th:block>
     <link rel="stylesheet" href="/css/list-style.css">
 </head>
 <body>
@@ -14,13 +14,13 @@
             <h2>Manage <b>Service</b></h2>
         </div>
         <div class="col-sm-3">
-            <form action="/service?actionService=search" method="post">
-                <input type="text" name="searchService" placeholder="Enter service name">
+            <form action="/service/list" method="get">
+                <input type="text" name="keyword" th:value="${keyword}" placeholder="Search">
                 <button type="submit" class="btn btn-success"> Search</button>
             </form>
         </div>
         <div class="col-sm-3">
-            <a href="/service?actionService=add" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i>
+            <a href="/service/create" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i>
                 <span>Add New Service</span></a>
         </div>
     </div>
@@ -45,66 +45,69 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="facility" items="${facilities}">
-            <tr>
-                <td>${facility.facilityId}</td>
-                <td>${facility.facilityName}</td>
-                <td>${facility.usableArea}</td>
-                <td>${facility.rentalCosts}</td>
-                <td>${facility.maximumNumOfPeople}</td>
-                <td>${facility.rentalType.rentalTypeName}</td>
-                <td>${facility.typeFacility.typeFacilityName}</td>
-                <c:if test="${facility.typeFacility.typeFacilityId == 1}">
-                    <td>${facility.standardRoom}</td>
-                    <td>${facility.descriptionOtherConvenience}</td>
-                    <td>${facility.poolArea}</td>
-                    <td>${facility.numOfFloor}</td>
-                    <td>Trống</td>
-                </c:if>
-                <c:if test="${facility.typeFacility.typeFacilityId == 2}">
-                    <td>${facility.standardRoom}</td>
-                    <td>${facility.descriptionOtherConvenience}</td>
-                    <td>Trống</td>
-                    <td>${facility.numOfFloor}</td>
-                    <td>Trống</td>
-                </c:if>
-                <c:if test="${facility.typeFacility.typeFacilityId == 3}">
-                    <td>Trống</td>
-                    <td>Trống</td>
-                    <td>Trống</td>
-                    <td>Trống</td>
-                    <td>${facility.facilityFree}</td>
-                </c:if>
-                <td>
-                    <a href="/service?actionService=edit&id=${facility.facilityId}" class="btn btn-primary text-light"
-                       data-toggle="modal"><i
-                            class="material-icons"
-                            data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                    <button type="button"
-                            onclick="displayCustomerInModal('${facility.facilityId}','${facility.facilityName}')"
-                            class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#deleteServiceModal">
-                        <i class="material-icons"
-                           data-toggle="tooltip"
-                           title="Delete">&#xE872;</i>
-                    </button>
-                </td>
-            </tr>
-        </c:forEach>
+        <tr th:each="facility, status : ${facilityList}">
+            <td th:text="${status.count}"></td>
+            <td th:text="${facility.name}"></td>
+            <td th:text="${facility.area}"></td>
+            <td th:text="${facility.cost}"></td>
+            <td th:text="${facility.maxPeople}"></td>
+            <td th:text="${facility.rentType.name}"></td>
+            <td th:text="${facility.facilityType.name}"></td>
+            <td th:text="${facility.standardRoom}"></td>
+            <td th:text="${facility.descriptionOtherConvenience}"></td>
+            <td th:text="${facility.poolArea}"></td>
+            <td th:text="${facility.numOfFloors}"></td>
+            <td th:text="${facility.facilityFree}"></td>
+            <td>
+                <a th:href="@{/service/update(id=${facility.id})}" class="btn btn-primary text-light"
+                   data-toggle="modal"><i
+                        class="material-icons"
+                        data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                <button type="button"
+                        th:attr="onclick=|displayCustomerInModal('${facility.id}','${facility.name}')|"
+                        class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#deleteServiceModal">
+                    <i class="material-icons"
+                       data-toggle="tooltip"
+                       title="Delete">&#xE872;</i>
+                </button>
+            </td>
+        </tr>
         </tbody>
     </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" th:href="@{/service/list(page=${facilityList.number-1}, keyword=${keyword})}"
+                   aria-label="Previous"
+                   th:if="${facilityList.hasPrevious()}">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <span th:text="${facilityList.number+1}"></span>/
+                <span th:text="${facilityList.totalPages}"></span>
+            </li>
+            <li class="page-item">
+                <a class="page-link" th:href="@{/service/list(page=${facilityList.number+1}, keyword=${keyword})}"
+                   aria-label="Next"
+                   th:if="${facilityList.hasNext()}">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 </div>
-<c:if test="${message != null}">
-    <p>${message}</p>
-</c:if>
+<p th:text="${message}"></p>
 <div class="modal fade" id="deleteServiceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="/service?actionService=delete" method="post">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+            <form action="/service/delete" method="get">
                 <div class="modal-body">
                     <input type="text" hidden id="deleteId" name="deleteId">
                     Do you want to delete a service: <span id="deleteName"></span>

@@ -14,8 +14,8 @@
             <h2>Manage <b>Customer</b></h2>
         </div>
         <div class="col-sm-3">
-            <form action="/customer?actionCustomer=search" method="post">
-                <input type="text" name="searchCustomer" placeholder="Enter customer name">
+            <form action="/customer/list" method="get">
+                <input type="text" name="keyword" th:value="${keyword}" placeholder="Search">
                 <button type="submit" class="btn btn-success"> Search </button>
             </form>
         </div>
@@ -47,7 +47,7 @@
                 <td th:text="${status.count}"></td>
                 <td th:text="${customer.customerType.customerTypeName}"></td>
                 <td th:text="${customer.name}"></td>
-                <td th:text="${customer.birthday}"></td>
+                <td th:text="${customer.dateOfBirth}"></td>
                 <td th:text="${customer.getStringGender()}"></td>
                 <td th:text="${customer.idCard}"></td>
                 <td th:text="${customer.phone}"></td>
@@ -67,6 +67,29 @@
             </tr>
         </tbody>
     </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" th:href="@{/customer/list(page=${customers.number-1}, keyword=${keyword})}"
+                   aria-label="Previous"
+                   th:if="${customers.hasPrevious()}">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <span th:text="${customers.number+1}"></span>/
+                <span th:text="${customers.totalPages}"></span>
+            </li>
+            <li class="page-item">
+                <a class="page-link" th:href="@{/customer/list(page=${customers.number+1}, keyword=${keyword})}"
+                   aria-label="Next"
+                   th:if="${customers.hasNext()}">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 </div>
 
 <div class="modal fade" id="deleteCustomerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

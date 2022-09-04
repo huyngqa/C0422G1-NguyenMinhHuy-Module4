@@ -1,6 +1,6 @@
 package com.furama.service.impl;
 
-import com.furama.model.customer.Customer;
+import com.furama.model.person.Customer;
 import com.furama.repository.ICustomerRepository;
 import com.furama.service.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +12,10 @@ import org.springframework.stereotype.Service;
 public class CustomerService implements ICustomerService {
     @Autowired
     private ICustomerRepository iCustomerRepository;
+
     @Override
-    public Page<Customer> findAllCustomer(Pageable pageable) {
-        return iCustomerRepository.findAll(pageable);
+    public Page<Customer> findAllCustomer(String name, String phone, String email, Pageable pageable) {
+        return iCustomerRepository.findAllByNameContainingOrPhoneOrEmail(name, phone, email, pageable);
     }
 
     @Override
