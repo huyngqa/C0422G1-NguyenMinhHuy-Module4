@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-lg-3">
+    <div class="input-group">
+        <div class="form-outline">
+            <label class="form-label" for="search">Tiêu đề</label>
+            <input type="search" id="search" name="keyword"/>
+            <button type="button" id="btn-search" class="btn btn-primary">
+                Tìm kiếm
+            </button>
+        </div>
+    </div>
+</div>
+<table id="tableBlog" class="table">
+    <thead class="text-dark">
+    <tr>
+        <th>#</th>
+        <th>Tiêu đề</th>
+        <th>Tác giả</th>
+        <th>Tóm tắt</th>
+        <th>Ngày tạo</th>
+        <th>Thể loại</th>
+        <th>Chức năng</th>
+    </tr>
+    </thead>
+    <tbody>
+    <span id="message" class="text-danger"></span>
+    </tbody>
+</table>
+<button type="button" id="re-load">Tải thêm</button>
+
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script>
+    let currentPage = 0;
+    let title = '';
+    let result = '';
+    function getBlogPage(pageNumber) {
+        $.ajax({
+            header: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "GET",
+            url: "http://localhost:8080/blogRest/listBlog?title=" + title + "&page=" + pageNumber,
+            success: function (blogPage) {
+                let blogList = blogPage.content;
+                console.log(blogList);
+                for (let i = 0; i < blogList.length; i++) {
+                    result += `<tr>
+                                    <td>${blogList[i].id}</td>
+                                    <td>${blogList[i].title}</td>
+                                    <td>${blogList[i].author}</td>
+                                    <td>${blogList[i].summary}</td>
+                                    <td>${blogList[i].formatCreationTime}</td>
+                                    <td>${blogList[i].category.categoryName}</td>
+                                </tr>`
+                }
+                $("tbody").html(result);
+                console.log(result);
+            },
+            error: function (resultError) {
+                alert(resultError);
+            }
+        });
+    };
+    $('#re-load').click(function () {
+        getBlogPage(++currentPage);
+    });
+
+    $('#btn-search').click(function () {
+        result = '';
+        currentPage = 0;
+        title = $('#search').val();
+        getBlogPage(currentPage);
+
+    });
+    getBlogPage(currentPage);
+</script>
+</body>
+</html>
