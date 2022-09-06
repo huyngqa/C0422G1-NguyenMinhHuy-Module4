@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/smartphones")
 public class SmartphoneController {
@@ -41,5 +42,19 @@ public class SmartphoneController {
         }
         smartphoneService.remove(id);
         return new ResponseEntity<>(smartphoneOptional.get(), HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Smartphone> getSmartphone(@PathVariable Long id) {
+        Optional<Smartphone> smartphone = smartphoneService.findById(id);
+        if(!smartphone.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(smartphone.get(), HttpStatus.OK);
+    }
+
+    @PatchMapping
+    public ResponseEntity<Smartphone> updateSmartphone(@RequestBody Smartphone smartphone) {
+        return new ResponseEntity<>(smartphoneService.save(smartphone), HttpStatus.CREATED);
     }
 }

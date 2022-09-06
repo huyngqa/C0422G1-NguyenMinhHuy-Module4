@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<form id="add-smartphone">
+    <table>
+        <tr>
+            <td>Producer:</td>
+            <td><input type="text" id="producer" placeholder="producer"></td>
+        </tr>
+        <tr>
+            <td>Model:</td>
+            <td><input type="text" id="model" placeholder="model"></td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td><input type="text" id="price" placeholder="price"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button id="btnCreate" type="submit">Create</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<h1>Smartphone List</h1>
+<table id="smartphoneList">
+    <thead>
+    <tr>
+        <td>Producer</td>
+        <td>Model</td>
+        <td>Price</td>
+        <td>Action</td>
+    </tr>
+    </thead>
+    <tbody id="phoneTable">
+
+    </tbody>
+</table>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script>
+    let result = '';
+    $("#btnCreate").click(function () {
+        let producer = $('#producer').val();
+        let model = $('#model').val();
+        let price = $('#price').val();
+        let newSmartphone = {
+            producer: producer,
+            model: model,
+            price: price
+        };
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "POST",
+            data: JSON.stringify(newSmartphone),
+            url: "http://localhost:8080/smartphones",
+            success: function(success) {
+                successHandler();
+        },
+        })
+    });
+
+    function getSmartphone(smartphone) {
+        return `<tr><td >${smartphone.producer}</td><td >${smartphone.model}</td><td>${smartphone.price}</td>` +
+            `<td><a class="deleteSmartphone" href="${smartphone.id}">Delete</a>
+                <a class="editSmartphone" href="${smartphone.id}">Edit</a></td>
+             </tr>`;
+    }
+
+    function successHandler() {
+        $.ajax({
+            type: "GET",
+            //tên API
+            url: "http://localhost:8080/smartphones",
+            //xử lý khi thành công
+            success: function (data) {
+                // hien thi danh sach o day
+                for (let i = 0; i < data.length; i++) {
+                    result += getSmartphone(data[i]);
+                }
+                $("#phoneTable").html(result);
+                console.log(result);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        //sư kiện nào thực hiện Ajax
+        $('.deleteSmartphone').click(function (event) {
+            //lay du lieu
+            let a = $(this);
+            let smartphoneId = a.attr("href");
+            // goi ajax
+            $.ajax({
+                type: "DELETE",
+                //tên API
+                url: `http://localhost:8080/smartphones/${smartphoneId}`,
+                //xử lý khi thành công
+                success: function (data) {
+                    a.parent().parent().remove();
+                }
+
+            });
+            //chặn sự kiện mặc định của thẻ
+            event.preventDefault();
+        });
+    })
+    successHandler();
+</script>
+</body>
+</html>
