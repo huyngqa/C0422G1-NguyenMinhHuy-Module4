@@ -5,7 +5,7 @@
 <body>
 <nav th:replace="layout :: nav"></nav>
 <div class="row">
-    <form action="/list">
+    <form action="/blog/list">
         <div class="col-lg-3">
             <div class="input-group">
                 <div class="form-outline">
@@ -49,11 +49,11 @@
         <td th:text="${blog.title}"></td>
         <td th:text="${blog.author}"></td>
         <td th:text="${blog.summary}"></td>
-        <td th:text="${blog.getFormatCreationTime()}"></td>
+        <td th:text="${blog.creationTime}"></td>
         <td th:text="${blog.category.categoryName}"></td>
         <td>
-            <a class="btn btn-primary" th:href="@{/details(id=${blog.id})}">Xem blog</a>
-            <a class="btn btn-primary" th:href="@{/update(id=${blog.id})}">Chỉnh sửa</a>
+            <a class="btn btn-primary" th:href="@{/blog/details(id=${blog.id})}">Xem blog</a>
+            <a class="btn btn-primary" th:href="@{/blog/update(id=${blog.id})}">Chỉnh sửa</a>
             <button type="button" class="btn btn-primary"
                     th:attr="onclick=|showInfoBlog('${blog.id}','${blog.title}')|"
                     data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -66,7 +66,7 @@
 <nav aria-label="Page navigation example">
     <ul class="pagination">
         <li class="page-item">
-            <a class="page-link" th:href="@{/list(page=${blogList.number-1}, keyword=${keyword}, categoryName=${categoryName})}"
+            <a class="page-link" th:href="@{/blog/list(page=${blogList.number-1}, keyword=${keyword}, categoryName=${categoryName})}"
                aria-label="Previous"
                th:if="${blogList.hasPrevious()}">
                 <span aria-hidden="true">&laquo;</span>
@@ -77,7 +77,7 @@
             <span th:text="${blogList.totalPages}"></span>
         </li>
         <li class="page-item">
-            <a class="page-link" th:href="@{/list(page=${blogList.number+1}, keyword=${keyword}, categoryName=${categoryName})}"
+            <a class="page-link" th:href="@{/blog/list(page=${blogList.number+1}, keyword=${keyword}, categoryName=${categoryName})}"
                aria-label="Next"
                th:if="${blogList.hasNext()}">
                 <span aria-hidden="true">&raquo;</span>
@@ -94,7 +94,7 @@
                 <h5 class="modal-title" id="exampleModalLabel">Bạn có muốn xoá không?</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="/delete" method="get">
+            <form action="/blog/delete" method="get">
                 <div class="modal-body">
                     <input type="hidden" name="idDelete" id="idDelete">
                     <span id="titleDelete"></span>

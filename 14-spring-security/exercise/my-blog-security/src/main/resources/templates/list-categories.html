@@ -17,7 +17,7 @@
         <td th:text="${status.count}"></td>
         <td th:text="${category.categoryName}"></td>
         <td>
-            <a class="btn btn-primary" th:href="@{/list(categoryName=${category.categoryName})}">Các blog thể loại</a>
+            <a class="btn btn-primary" th:href="@{/blog/list(categoryName=${category.categoryName})}">Các blog thể loại</a>
             <a class="btn btn-primary" th:href="@{/category/update(id=${category.id})}">Chỉnh sửa</a>
             <button type="button" class="btn btn-primary"
                     th:attr="onclick=|showInfoBlog('${category.id}','${category.categoryName}')|"

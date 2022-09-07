@@ -8,13 +8,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
+@RequestMapping("/blog")
 public class BlogController {
     @Autowired
     private IBlogService iBlogService;
@@ -44,13 +42,13 @@ public class BlogController {
     public String saveNewBlog(@ModelAttribute Blog blog, RedirectAttributes redirectAttributes) {
         this.iBlogService.saveBlog(blog);
         redirectAttributes.addFlashAttribute("message", "Tiến trình thành công");
-        return "redirect:";
+        return "redirect:/blog";
     }
 
     @GetMapping("/update")
     public String showFormEdit(@RequestParam int id, Model model) {
         model.addAttribute("categories", this.iCategoryService.findAllCategory());
-        model.addAttribute("blog", this.iBlogService.findBlogById(id));
+        model.addAttribute("blog", this.iBlogService.findBlogById(id).get());
         return "edit-blog";
     }
 
@@ -58,7 +56,7 @@ public class BlogController {
     public String updateBlog(@ModelAttribute Blog blog, RedirectAttributes redirectAttributes) {
         this.iBlogService.saveBlog(blog);
         redirectAttributes.addFlashAttribute("message", "Cập nhật thành công");
-        return "redirect:";
+        return "redirect:/blog";
     }
 
     @GetMapping("/details")
@@ -71,6 +69,6 @@ public class BlogController {
     public String deleteBlog(@RequestParam int idDelete, RedirectAttributes redirectAttributes) {
         this.iBlogService.deleteBlogById(idDelete);
         redirectAttributes.addFlashAttribute("message", "Đã xoá");
-        return "redirect:";
+        return "redirect:/blog";
     }
 }
