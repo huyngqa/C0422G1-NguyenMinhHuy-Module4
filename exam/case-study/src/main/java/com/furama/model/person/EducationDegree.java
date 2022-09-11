@@ -16,10 +16,10 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerType {
+public class EducationDegree {
     @Id
     private Integer id;
     private String customerTypeName;
-    @OneToMany(mappedBy = "customerType", cascade = CascadeType.REMOVE)
-    private List<Customer> customers;
+    @OneToMany(mappedBy = "educationDegree")
+    private List<Employee> employees;
 }

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit Service</title>
     <th:block th:replace="~{/layout::css}"></th:block>
 </head>
 <body>
@@ -66,51 +66,6 @@
             <label for="service_free" class="form-label">Service free </label>
             <input type="text" class="form-control" id="service_free" th:field="*{facilityFree}">
         </div>
-<!--        <div th:if="${facility.facilityType.id == 1}">-->
-<!--            <div class="col-md-12 " style="display: block">-->
-<!--                <label class="form-label">Standard Room </label>-->
-<!--                <input type="text" class="form-control" th:field="*{standardRoom}">-->
-<!--            </div>-->
-
-<!--            <div class="col-md-12 " style="display: block">-->
-<!--                <label class="form-label">Description other convenience</label>-->
-<!--                <input type="text" class="form-control"-->
-<!--                       th:field="*{descriptionOtherConvenience}">-->
-<!--            </div>-->
-
-<!--            <div class="col-md-12 " style="display: block">-->
-<!--                <label class="form-label">Pool area </label>-->
-<!--                <input type="text" class="form-control" th:field="*{poolArea}">-->
-<!--            </div>-->
-
-<!--            <div class="col-md-12" style="display: block">-->
-<!--                <label class="form-label">Number of floors </label>-->
-<!--                <input type="number" class="form-control" th:field="*{numOfFloors}">-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div th:if="${facility.facilityType.id == 2}">-->
-<!--            <div class="col-md-12 " style="display: block">-->
-<!--                <label class="form-label">Standard Room </label>-->
-<!--                <input type="text" class="form-control" th:field="*{standardRoom}">-->
-<!--            </div>-->
-
-<!--            <div class="col-md-12 " style="display: block">-->
-<!--                <label class="form-label">Description other convenience</label>-->
-<!--                <input type="text" class="form-control"-->
-<!--                       th:field="*{descriptionOtherConvenience}">-->
-<!--            </div>-->
-
-<!--            <div class="col-md-12" style="display: block">-->
-<!--                <label class="form-label">Number of floors </label>-->
-<!--                <input type="number" class="form-control" th:field="*{numOfFloors}">-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div th:if="${facility.facilityType.id == 3}">-->
-<!--            <div class="col-md-12 " id="sv-free" style="display: none">-->
-<!--                <label for="service_free" class="form-label">Service free </label>-->
-<!--                <input type="text" class="form-control" id="service_free" th:field="*{facilityFree}">-->
-<!--            </div>-->
-<!--        </div>-->
         <div class="col-12 ">
             <button type="submit" class="btn btn-primary">Edit</button>
         </div>
@@ -118,55 +73,65 @@
 </div>
 <div th:replace="~{/layout :: footer}"></div>
 <script>
-    function showService(value) {
-        let v = value.value;
-        switch (v) {
-            case "1":
-                document.getElementById("standard").style.display = "block";
-                document.getElementById("convenience").style.display = "block";
-                document.getElementById("pool").style.display = "block";
-                document.getElementById("floors").style.display = "block";
-                document.getElementById("sv-free").style.display = "none";
+    $("#selectService").change(function (){
+        let value = $("#selectService").val();
+        switch (value) {
+            case "1" :
+                $("#standard").show();
+                $("#convenience").show();
+                $("#pool").show();
+                $("#floors").show();
+                $("#sv-free").hide();
+                $("#service_free").val(null);
                 break;
-            case "2":
-                document.getElementById("standard").style.display = "block";
-                document.getElementById("convenience").style.display = "block";
-                document.getElementById("pool").style.display = "none";
-                document.getElementById("floors").style.display = "block";
-                document.getElementById("sv-free").style.display = "none";
+            case "2" :
+                $("#standard").show();
+                $("#convenience").show();
+                $("#pool").hide();
+                $("#pool_area").val(null);
+                $("#floors").show();
+                $("#sv-free").hide();
+                $("#service_free").val(null);
                 break;
-            case "3":
-                document.getElementById("standard").style.display = "none";
-                document.getElementById("convenience").style.display = "none";
-                document.getElementById("pool").style.display = "none";
-                document.getElementById("floors").style.display = "none";
-                document.getElementById("sv-free").style.display = "block";
+            case "3" :
+                $("#standard").hide();
+                $("#standard_room").val(null);
+                $("#convenience").hide();
+                $("#description_other_convenience").val(null);
+                $("#pool").hide();
+                $("#pool_area").val(null);
+                $("#floors").hide();
+                $("#number_of_floors").val(null);
+                $("#sv-free").show();
                 break;
         }
-    }
-    window.onload=function (){
-        if( document.getElementById("selectService").value =='1'){
-            document.getElementById("standard").style.display = "block";
-            document.getElementById("convenience").style.display = "block";
-            document.getElementById("pool").style.display = "block";
-            document.getElementById("floors").style.display = "block";
-            document.getElementById("sv-free").style.display = "none";
+    });
+    $("#service_free").ready(function () {
+        let value = $("#selectService").val();
+        switch (value) {
+            case "1" :
+                $("#standard").show();
+                $("#convenience").show();
+                $("#pool").show();
+                $("#floors").show();
+                $("#sv-free").hide();
+                break;
+            case "2" :
+                $("#standard").show();
+                $("#convenience").show();
+                $("#pool").hide();
+                $("#floors").show();
+                $("#sv-free").hide();
+                break;
+            case "3" :
+                $("#standard").hide();
+                $("#convenience").hide();
+                $("#pool").hide();
+                $("#floors").hide();
+                $("#sv-free").show();
+                break;
         }
-        if( document.getElementById("selectService").value =='2') {
-            document.getElementById("standard").style.display = "block";
-            document.getElementById("convenience").style.display = "block";
-            document.getElementById("pool").style.display = "none";
-            document.getElementById("floors").style.display = "block";
-            document.getElementById("sv-free").style.display = "none";
-        }
-        if( document.getElementById("selectService").value =='3') {
-            document.getElementById("standard").style.display = "none";
-            document.getElementById("convenience").style.display = "none";
-            document.getElementById("pool").style.display = "none";
-            document.getElementById("floors").style.display = "none";
-            document.getElementById("sv-free").style.display = "block";
-        }
-    }
+    });
 </script>
 </body>
 </html>

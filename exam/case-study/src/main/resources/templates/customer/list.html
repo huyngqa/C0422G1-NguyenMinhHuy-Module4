@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Customer</title>
     <th:block th:replace="~{/layout::css}"></th:block>
     <link rel="stylesheet" href="/css/list-style.css">
 </head>
@@ -116,8 +116,8 @@
 <div th:replace="~{/layout :: footer}"></div>
 <script>
     function displayCustomerInModal(id, name) {
-        document.getElementById("deleteId").value = id;
-        document.getElementById("deleteName").innerText = name;
+        $("#deleteId").val(id);
+        $("#deleteName").text(name);
     }
 </script>
 </body>

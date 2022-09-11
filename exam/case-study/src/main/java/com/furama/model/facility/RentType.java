@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 public class RentType {
     @Id
-    private int id;
+    private Integer id;
     private String name;
     @OneToMany(mappedBy = "rentType")
     private List<Facility> facilityList;
