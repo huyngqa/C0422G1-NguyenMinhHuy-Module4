@@ -28,7 +28,7 @@ public class Contract {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
     private Double deposit;
-    @JsonBackReference
+    @JsonBackReference(value = "employee_id")
     @ManyToOne
     @JoinColumn(name = "employee_id", referencedColumnName = "id")
     private Employee employee;

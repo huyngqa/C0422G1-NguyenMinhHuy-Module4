@@ -22,7 +22,7 @@ public class ContractDetail {
     @ManyToOne
     @JoinColumn(name = "attach_facility_id", referencedColumnName = "id")
     private AttachFacility attachFacility;
-    @JsonBackReference
+    @JsonBackReference(value = "contract_id")
     @ManyToOne
     @JoinColumn(name = "contract_id", referencedColumnName = "id")
     private Contract contract;

@@ -23,11 +23,11 @@ public class Facility {
     private Double area;
     private Integer cost;
     private Integer maxPeople;
-    @JsonBackReference
+    @JsonBackReference(value = "rent_type_id")
     @ManyToOne
     @JoinColumn(name = "rent_type_id", referencedColumnName = "id")
     private RentType rentType;
-    @JsonBackReference
+    @JsonBackReference(value = "facility_type_id")
     @ManyToOne
     @JoinColumn(name = "facility_type_id", referencedColumnName = "id")
     private FacilityType facilityType;
@@ -37,7 +37,7 @@ public class Facility {
     private Integer numOfFloors;
     @Column(columnDefinition = "TEXT")
     private String facilityFree;
-    @JsonBackReference
+    @JsonBackReference(value = "facility")
     @OneToMany(mappedBy = "facility", cascade = CascadeType.REMOVE)
     private List<Contract> contracts;
 }

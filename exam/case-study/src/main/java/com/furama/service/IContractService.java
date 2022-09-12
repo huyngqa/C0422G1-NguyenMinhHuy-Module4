@@ -8,5 +8,8 @@ import java.time.LocalDate;
 
 public interface IContractService {
     Page<Contract> findAllContractUsed
-            (LocalDate endDate,String nameCustomer, Pageable pageable);;
+            (LocalDate endDate,String nameCustomer, Pageable pageable);
+    void save(Contract contract);
+
+    Contract getContractByID(Integer id);
 }

@@ -20,4 +20,14 @@ public class ContractService implements IContractService {
         return iContractRepository.findAllByEndDateGreaterThanEqualAndCustomer_NameContaining
                 (endDate, nameCustomer, pageable);
     }
+
+    @Override
+    public void save(Contract contract) {
+        iContractRepository.save(contract);
+    }
+
+    @Override
+    public Contract getContractByID(Integer id) {
+        return iContractRepository.getById(id);
+    }
 }

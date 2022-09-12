@@ -23,7 +23,7 @@ public class AttachFacility {
     private Integer cost;
     private String unit;
     private String status;
-    @JsonBackReference
+    @JsonBackReference(value = "attachFacility")
     @OneToMany(mappedBy = "attachFacility", cascade = CascadeType.REMOVE)
     private List<ContractDetail> contractDetails;
 }

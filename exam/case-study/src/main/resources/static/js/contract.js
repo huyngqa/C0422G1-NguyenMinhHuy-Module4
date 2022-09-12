@@ -138,8 +138,8 @@ function showFormEditContract(contractId, facilityId) {
         type: "GET",
         url: "/facilityRest",
         success: function (facilityList) {
-            console.log(facilityList)
-            let result = "<select id='selectFacility' name='selectFacility'>";
+            let result = "<label for='selectFacility'>Choose Facility</label>" +
+                "<select id='selectFacility' name='selectFacility'>";
             for (let i = 0; i < facilityList.length; i++) {
                 if(facilityId == facilityList[i].id) {
                     result += `<option value="${facilityList[i].id}" selected>${facilityList[i].name}</option>`;
@@ -147,6 +147,8 @@ function showFormEditContract(contractId, facilityId) {
                 result += `<option value="${facilityList[i].id}">${facilityList[i].name}</option>`;
             }
             result += "</select>"
+            $("#idContract").val(contractId);
+            $("#select-facility").html(result);
         }
     });
 };

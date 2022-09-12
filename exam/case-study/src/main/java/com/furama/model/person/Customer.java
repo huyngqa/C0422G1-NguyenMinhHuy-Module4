@@ -17,11 +17,11 @@ import java.util.List;
 @AllArgsConstructor
 public class Customer extends Person {
     private Boolean gender;
-    @JsonBackReference
+    @JsonBackReference(value = "customer_type_id")
     @ManyToOne
     @JoinColumn(name = "customer_type_id", referencedColumnName = "id")
     private CustomerType customerType;
-    @JsonBackReference
+    @JsonBackReference(value = "customer")
     @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE)
     private List<Contract> contracts;
 
