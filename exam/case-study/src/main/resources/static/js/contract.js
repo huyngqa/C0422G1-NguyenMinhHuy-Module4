@@ -60,10 +60,12 @@ function showListContract(pageNumber) {
                                         </button>
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary text-light"
-                                           data-toggle="modal"><i
-                                                class="material-icons"
-                                                data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" 
+                                                data-bs-target="#editContract"
+                                                onclick="showFormEditContract('${contracts[i].id}','${contracts[i].facility.id}')">
+                                                <i class="material-icons"
+                                                    data-toggle="tooltip" title="Edit">&#xE254;</i>
+                                        </button>
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -75,7 +77,11 @@ function showListContract(pageNumber) {
                                 </tr>`
             }
             $("#table-contract").html(result).css("color", "black");
-            $("#numberPage").text(pageNumber + 1);
+            if(isNaN(pageNumber)) {
+                $("#numberPage").text(1);
+            } else {
+                $("#numberPage").text(pageNumber + 1);
+            }
             $("#totalPage").text(contractPage.totalPages);
         },
         error: function (resultError) {
@@ -122,3 +128,25 @@ function hideAttachFacility() {
     document.getElementById("tableFacilityContract").style.display = 'none'
     document.getElementById("buttonHide").style.display = 'none'
 }
+
+function showFormEditContract(contractId, facilityId) {
+    $.ajax({
+        header: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        type: "GET",
+        url: "/facilityRest",
+        success: function (facilityList) {
+            console.log(facilityList)
+            let result = "<select id='selectFacility' name='selectFacility'>";
+            for (let i = 0; i < facilityList.length; i++) {
+                if(facilityId == facilityList[i].id) {
+                    result += `<option value="${facilityList[i].id}" selected>${facilityList[i].name}</option>`;
+                }
+                result += `<option value="${facilityList[i].id}">${facilityList[i].name}</option>`;
+            }
+            result += "</select>"
+        }
+    });
+};
