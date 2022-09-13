@@ -9,11 +9,12 @@
 <div th:replace="~{/layout :: header}"></div>
 <div class="container-fluid">
     <h3 class="text-black-">Edit Service</h3>
-    <form action="/service/update" class="row g-3" method="post" th:object="${facility}">
+    <form action="/service/update" class="row g-3" method="post" th:object="${facilityDTO}">
         <input type="hidden" th:field="*{id}">
         <div class="col-md-12">
             <label for="name" class="form-label">Name Service</label>
             <input type="text" class="form-control" id="name" th:field="*{name}">
+            <span class="text-danger" th:errors="*{name}"></span>
         </div>
         <div class="col-md-12">
             <label for="area" class="form-label">Area</label>
@@ -22,10 +23,12 @@
         <div class="col-md-12">
             <label for="cost" class="form-label">Cost</label>
             <input type="text" class="form-control" id="cost" th:field="*{cost}">
+            <span class="text-danger" th:errors="*{cost}"></span>
         </div>
         <div class="col-md-12">
             <label for="max_people" class="form-label">Max people </label>
             <input type="number" class="form-control" id="max_people" th:field="*{maxPeople}">
+            <span class="text-danger" th:errors="*{maxPeople}"></span>
         </div>
         <div class="col-md-12">
             <label for="rent_type" class="form-label">Rent Type</label>
@@ -60,6 +63,7 @@
         <div class="col-md-12" id="floors" style="display: block">
             <label for="number_of_floors" class="form-label">Number of floors </label>
             <input type="number" class="form-control" id="number_of_floors" th:field="*{numOfFloors}">
+            <span class="text-danger" th:errors="*{numOfFloors}"></span>
         </div>
 
         <div class="col-md-12 " id="sv-free" style="display: none">

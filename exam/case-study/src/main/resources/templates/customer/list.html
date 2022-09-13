@@ -14,7 +14,7 @@
             <h2>Manage <b>Customer</b></h2>
         </div>
         <div class="col-sm-3">
-            <form action="/customer/list" method="get">
+            <form action="/customer" method="get">
                 <input type="text" name="keyword" th:value="${keyword}" placeholder="Search">
                 <button type="submit" class="btn btn-success"> Search </button>
             </form>
@@ -70,7 +70,7 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item">
-                <a class="page-link" th:href="@{/customer/list(page=${customers.number-1}, keyword=${keyword})}"
+                <a class="page-link" th:href="@{/customer(page=${customers.number-1}, keyword=${keyword})}"
                    aria-label="Previous"
                    th:if="${customers.hasPrevious()}">
                     <span aria-hidden="true">&laquo;</span>
@@ -81,7 +81,7 @@
                 <span th:text="${customers.totalPages}"></span>
             </li>
             <li class="page-item">
-                <a class="page-link" th:href="@{/customer/list(page=${customers.number+1}, keyword=${keyword})}"
+                <a class="page-link" th:href="@{/customer(page=${customers.number+1}, keyword=${keyword})}"
                    aria-label="Next"
                    th:if="${customers.hasNext()}">
                     <span aria-hidden="true">&raquo;</span>

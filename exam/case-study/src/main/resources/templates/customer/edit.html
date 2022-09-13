@@ -14,7 +14,7 @@
 </head>
 <body class="hasFormUserAvatar">
 <div th:replace="~{/layout :: header}"></div>
-<form  action="/customer/update"class="jotform-form" method="post" th:object="${customer}" name="form_222155024937453" id="222155024937453"
+<form  action="/customer/update"class="jotform-form d-flex justify-content-center" method="post" th:object="${customerDTO}" name="form_222155024937453" id="222155024937453"
       accept-charset="utf-8" autocomplete="on">
     <div role="main" class="form-all">
         <ul class="form-section page-section">
@@ -23,7 +23,7 @@
                      style="background-image: url('/img/customer.jpg')">
                     <div class="header-text httal htvam">
                         <h2 id="header_293" class="form-header" data-component="header">
-                            Add Customer
+                            Edit Customer
                         </h2>
                         <div id="subHeader_293" class="form-subHeader">
                             Wish you have a lot of fun
@@ -40,7 +40,7 @@
           </span>
                 </label>
                 <div id="cid_314" class="form-input jf-required">
-                    <select class="form-dropdown validate[required]" id="input_314" th:field="*{customerType}"
+                    <select class="form-dropdown validate[required]" id="input_314" th:field="*{customerTypeDTO.id}"
                             style="width:150px" data-component="dropdown" required="">
                         <option value="0">--Choose Customer--</option>
                         <option th:each="customerType : ${customerTypeList}"
@@ -64,6 +64,7 @@
                    aria-labelledby="label_324 sublabel_input_324" required=""/>
             <label class="form-sub-label" for="input_324" id="sublabel_input_324" style="min-height:13px"
                    aria-hidden="false"> Full name </label>
+              <span class="text-danger" th:errors="*{name}"></span>
           </span>
                 </div>
             </li>
@@ -83,7 +84,7 @@
                    aria-labelledby="label_311" required=""/>
             <label class="form-sub-label" for="input_7_day" id="sub_lable_7_day" style="min-height:13px"
                    aria-hidden="false">  </label>
-                            <span class="text-danger">${dayOfBirthErr}</span>
+                            <span class="text-danger" th:errors="*{dateOfBirth}"></span>
           </span>
                     </div>
                 </div>
@@ -110,6 +111,7 @@
               <input type="radio" aria-describedby="label_313" class="form-radio validate[required]" id="input_313_1"
                      th:field="*{gender}" value="false" required=""/>
               <label id="label_input_313_1" for="input_313_1"> Nữ </label>
+                            <span class="text-danger" th:errors="*{gender}"></span>
             </span>
                     </div>
                 </div>
@@ -147,6 +149,7 @@
                    aria-labelledby="label_6" required=""/>
             <label class="form-sub-label" for="input_6_full" id="sublabel_6_masked" style="min-height:13px"
                    aria-hidden="false">  </label>
+              <span class="text-danger" th:errors="*{phone}"></span>
           </span>
                 </div>
             </li>
@@ -157,6 +160,7 @@
                     <input type="email" id="input_5" th:field="*{email}" class="form-textbox validate[Email]"
                            data-defaultvalue="" size="30" value="" placeholder="ex: myname@example.com"
                            data-component="email" aria-labelledby="label_5"/>
+                    <span class="text-danger" th:errors="*{email}"></span>
                 </div>
             </li>
             <li class="form-line jf-required" data-type="control_address" id="id_4">
@@ -177,6 +181,7 @@
                          aria-labelledby="label_4 sublabel_4_addr_line1" required=""/>
                   <label class="form-sub-label" for="input_4_addr_line1" id="sublabel_4_addr_line1"
                          style="min-height:13px" aria-hidden="false"> Street Address </label>
+                    <span class="text-danger" th:errors="*{address}"></span>
                 </span>
               </span>
                         </div>
