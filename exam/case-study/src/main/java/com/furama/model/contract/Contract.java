@@ -38,6 +38,6 @@ public class Contract {
     @ManyToOne
     @JoinColumn(name = "facility_id", referencedColumnName = "id")
     private Facility facility;
-    @OneToMany(mappedBy = "contract", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "contract", cascade = CascadeType.ALL)
     private List<ContractDetail> contractDetails;
 }

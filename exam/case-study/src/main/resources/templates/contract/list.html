@@ -85,44 +85,28 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="detailModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="detailModalLabel">Add Service Include</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="">
+                <input type="hidden" id="id-contract-in-attach"/>
                     <table class="table table-striped">
+                        <thead>
                         <tr>
                             <th>Name of service included</th>
                             <th>Unit</th>
                             <th>Price</th>
                             <th>Amount</th>
-
                         </tr>
-                        <tr>
-                            <td><input type="checkbox"> Karaoke</td>
-                            <td>House</td>
-                            <td>100000</td>
-                            <td><input style="width: 70px" type="number"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"> Thuê xe máy</td>
-                            <td>House</td>
-                            <td>100000</td>
-                            <td><input style="width: 70px" type="number"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"> Thuê xe đạp</td>
-                            <td>House</td>
-                            <td>100000</td>
-                            <td><input style="width: 70px" type="number"></td>
-                        </tr>
-
+                        </thead>
+                        <tbody class="table-attach-facility" id="table-add-attach">
+                        </tbody>
                     </table>
-                </form>
+                <span class="text-success" id="mess"></span>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Add</button>
+                <button type="button" class="btn btn-primary" id="btn-add-attach">Add</button>
             </div>
         </div>
     </div>
@@ -212,6 +196,7 @@
                             </button>
 
                             <table class="table table-striped" id="tableFacilityContract" style="display: none;">
+                                <thead>
                                 <tr>
                                     <th>Name Service Include</th>
                                     <th>Unit</th>
@@ -225,25 +210,26 @@
                                         </button>
                                     </th>
                                 </tr>
-                                <tr>
-                                    <td><input type="checkbox"> Karaoke</td>
-                                    <td>House</td>
-                                    <td>100000</td>
-                                    <td><input style="width:50px" type="number"></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox"> Thuê xe máy</td>
-                                    <td>House</td>
-                                    <td>100000</td>
-                                    <td><input style="width: 50px" type="number"></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox"> Thuê xe đạp</td>
-                                    <td>House</td>
-                                    <td>100000</td>
-                                    <td><input style="width: 50px" type="number"></td>
-                                </tr>
-
+                                <tbody class="table-attach-facility">
+<!--                                <tr>-->
+<!--                                    <td><input type="checkbox"> Karaoke</td>-->
+<!--                                    <td>House</td>-->
+<!--                                    <td>100000</td>-->
+<!--                                    <td><input style="width:50px" type="number"></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td><input type="checkbox"> Thuê xe máy</td>-->
+<!--                                    <td>House</td>-->
+<!--                                    <td>100000</td>-->
+<!--                                    <td><input style="width: 50px" type="number"></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td><input type="checkbox"> Thuê xe đạp</td>-->
+<!--                                    <td>House</td>-->
+<!--                                    <td>100000</td>-->
+<!--                                    <td><input style="width: 50px" type="number"></td>-->
+<!--                                </tr>-->
+                            </tbody>
                             </table>
 
                         </div>

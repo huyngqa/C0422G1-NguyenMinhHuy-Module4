@@ -33,7 +33,7 @@ public class ContractController {
         Contract contract = iContractService.getContractByID(idContract);
         contract.setFacility(facility);
         iContractService.save(contract);
-        redirectAttributes.addFlashAttribute("message", "Cập nhật thành công");
+        redirectAttributes.addFlashAttribute("message", "Update Success");
         return "redirect:/contract";
     }
 }

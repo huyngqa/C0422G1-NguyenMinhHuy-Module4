@@ -55,13 +55,13 @@ function showListContract(pageNumber) {
                                     <td>${totalMoney}</td>
                                     <td>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#addDetail">
+                                                data-bs-target="#addDetail" onclick="showModalAttach('${contracts[i].id}')">
                                             <i class="material-icons">&#xE147;</i>
                                         </button>
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" 
-                                                data-bs-target="#editContract"
+                                                data-bs-target="#editContract" 
                                                 onclick="showFormEditContract('${contracts[i].id}','${contracts[i].facility.id}')">
                                                 <i class="material-icons"
                                                     data-toggle="tooltip" title="Edit">&#xE254;</i>
@@ -152,3 +152,66 @@ function showFormEditContract(contractId, facilityId) {
         }
     });
 };
+
+let resultListAttach = "";
+
+$(".table-attach-facility").ready(function (){
+    $.ajax({
+        header: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        type: "GET",
+        url: "/attachRest",
+        success: function (attachFacility) {
+            for (let i = 0; i < attachFacility.length; i++) {
+                resultListAttach += `<tr>
+                                <td><input type="checkbox" value="${attachFacility[i].id}">${attachFacility[i].name}</td>
+                                <td>${attachFacility[i].unit}</td>
+                                <td>${attachFacility[i].cost}</td>
+                                <td><input style="width:50px" id="id-quantity${i+1}" type="number"></td>
+                           </tr>`
+            }
+        },
+    });
+});
+
+function showModalAttach(id) {
+    $("#id-contract-in-attach").val(id);
+    $(".table-attach-facility").html(resultListAttach);
+    $("#mess").text("")
+}
+
+$("#btn-add-attach").click(function () {
+    let mess = "";
+    let arrIdAttach=[];
+    let arrQuantity=[];
+    let idContract = $("#id-contract-in-attach").val();
+    $("#table-add-attach input:checked").each(function () {
+        let idQuantity = "#id-quantity" + this.value
+        arrIdAttach.push(this.value);
+        arrQuantity.push($(idQuantity).val());
+    })
+    for (let i = 0; i < arrIdAttach.length; i++) {
+        let contractDetail = {
+            "quantity": arrQuantity[i],
+            "attachFacility": {
+                "id": arrIdAttach[i]
+            },
+            "contract": {
+                "id": idContract
+            }
+        }
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "POST",
+            url: "/restContractDetail/save",
+            data: JSON.stringify(contractDetail),
+            success: mess = "success"
+        })
+    }
+    $("#mess").text(mess)
+});

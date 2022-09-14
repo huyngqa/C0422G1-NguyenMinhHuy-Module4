@@ -19,9 +19,15 @@ public class ContractDetailRestController {
     @GetMapping("{id}")
     public ResponseEntity<List<ContractDetail>> getAllContractDetail(@PathVariable Integer id) {
         List<ContractDetail> contractDetails = iContractDetailService.findByAllContractDetailById(id);
-        if(contractDetails.isEmpty()) {
+        if (contractDetails.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(contractDetails, HttpStatus.OK);
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<Void> saveContractDetail(@RequestBody ContractDetail contractDetail) {
+        iContractDetailService.save(contractDetail);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
